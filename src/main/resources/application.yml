@@ -1,0 +1,21 @@
+server:
+  port: 9201
+service-url:
+  user-service: http://localhost:8201
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: path_route #路由的ID
+          uri: ${service-url.user-service}/user/{id} #匹配后路由地址
+#          predicates:
+#            - Host={ segment }.myhost.org
+          predicates:
+            - Method=GET
+
+          filters:
+#            - AddRequestHeader=X-Request-red, blue
+#           - AddRequestParameter=red, blue
+#            - AddRequestParameter=foo, bar-{segment}
+#            - AddResponseHeader=X-Response-Red, Blue
+#            - PrefixPath=/user
